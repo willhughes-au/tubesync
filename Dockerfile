@@ -94,8 +94,6 @@ RUN set -x && \
   # Create config, downloads and run dirs
   mkdir -p /run/app && \
   mkdir -p /config/media && \
-  mkdir -p /downloads/audio && \
-  mkdir -p /downloads/video && \
   # Clean up
   rm /app/Pipfile && \
   rm /app/Pipfile.lock && \
