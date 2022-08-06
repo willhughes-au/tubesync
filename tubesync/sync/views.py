@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.db import IntegrityError
 from django.db.models import Q, Count, Sum, When, Case
+from django.db.models.functions import Lower
 from django.forms import ValidationError
 from django.utils.text import slugify
 from django.utils import timezone
@@ -104,7 +105,7 @@ class SourcesView(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        all_sources = Source.objects.all().order_by('name')
+        all_sources = Source.objects.all().order_by(Lower('name'))
         return all_sources.annotate(
             media_count=Count('media_source'),
             downloaded_count=Count(Case(When(media_source__downloaded=True, then=1)))
