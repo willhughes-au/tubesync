@@ -184,7 +184,7 @@ def media_post_save(sender, instance, created, **kwargs):
         download_media(
             str(instance.pk),
             queue=str(instance.source.pk),
-            priority=15,
+            priority=1,
             verbose_name=verbose_name.format(instance.name),
             remove_existing_tasks=True
         )
